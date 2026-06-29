@@ -77,6 +77,20 @@ opinion-dynamics-platform
 ├── app.py
 ├── README.md
 ├── Project_Report.pdf
+|
+├── screenshots/
+|   ├── home_guest_1.png
+|   ├── home_guest_2.png
+|   ├── login.png
+|   ├── register_1.png
+|   ├── register_2.png
+|   ├── create_debate_1.png
+|   ├── create_debate_2.png
+|   ├── scientific_category.png
+|   ├── debate_page_1.png
+|   ├── debate_page_2.png
+|   ├── profile.png
+|   └── statistique.png
 │
 ├── tests/
 │   └── test_app.py
@@ -186,16 +200,49 @@ pytest
 
 ## Screenshots
 
-The application includes several interfaces:
+### Home page (Guest)
 
-- Home page
-- Authentication
-- Debate creation
-- Debate participation
-- User profile
-- Statistics dashboard
+![Home](screenshots/home_guest_1.png)
+![Home](screenshots/home_guest_2.png)
 
-*(Screenshots will be added soon.)*
+---
+
+### Login
+
+![Login](screenshots/login.png)
+
+---
+
+### Registration
+
+![Registration](screenshots/register_1.png)
+
+![Registration](screenshots/register_2.png)
+
+---
+
+### Create a debate
+
+![Create Debate](screenshots/create_debate_1.png)
+
+![Create Debate](screenshots/create_debate_2.png)
+
+---
+
+### Debate page
+
+![Debate](screenshots/debate_page_1.png)
+![Debate](screenshots/debate_page_2.png)
+
+---
+
+### User profile
+
+![Profile](screenshots/profile.png)
+
+### Statistique
+
+![Profile](screenshots/statistique.png)
 
 ---
 
