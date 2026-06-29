@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Débat - {{ debate[0] }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='debat.css') }}">
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <span class="v">V</span>
+            <span class="neutre">/</span>
+            <span class="s">S</span>
+        </div>
+        <nav>
+            <a href="{{ url_for('acc') }}">Accueil</a>
+            {% if is_logged_in %}
+                <a href="{{ url_for('creerdebat') }}">Créer un débat</a>
+                <a href="{{ url_for('theme_page', theme_name=theme_name) }}">Retour à la page {{ theme_name }}</a>
+                <a href="{{ url_for('logout') }}">Déconnexion</a>
+            {% else %}
+                <a href="{{ url_for('connexion') }}">Connexion</a>
+                <a href="{{ url_for('inscription') }}">Inscription</a>
+            {% endif %}
+        </nav>
+        {% if is_logged_in %}
+        <div class="profil-btn">
+            <a href="{{ url_for('profil') }}" class="profil-circle">{{ session['username'][0] | upper }}</a>
+        </div>
+        {% endif %}
+    </header>
+
+    <main>
+        <!-- Bloc pour afficher les flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div class="flash-messages">
+              {% for category, message in messages %}
+                <p class="{{ category }}-message">{{ message }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <section class="debate-intro">
+            <div class="time-remaining" id="countdown">Temps restant</div>
+            <h1>{{ debate[0] }}</h1>
+            <p>{{ debate[1] }}</p>
+        </section>
+
+        <!-- Bloc afficher les arguments -->
+        <section class="comments">
+            {% if args %}
+            {% for id_arg, pseudo, court, texte, camps, date_creation, likes, dislikes in args %}
+                {% if not choix or camps != choix %}
+                    {% if camps == 'N' %}
+                    <div class="comment-neutre">
+                        <a href="{{ url_for('commentaire', arg_id=id_arg) }}" class="comment-text">{{ court }}</a>
+                        <div class="like-section">
+                            <span class="like-count">{{ likes }}</span>
+                            {% if is_logged_in %}
+                            <form action="{{ url_for('liker_argument', arg_id=id_arg) }}" method="POST" class="like-form">
+                                <button type="submit" class="like-button" title="Liker cet argument" {% if id_arg in liked_args %}disabled style="color: #dc3545;"{% endif %}>👍</button>
+                            </form>
+                            {% endif %}
+                            <span class="dislike-count">{{ dislikes }}</span>
+                            {% if is_logged_in %}
+                            <form action="{{ url_for('disliker_argument', arg_id=id_arg) }}" method="POST" class="dislike-form">
+                                <button type="submit" class="dislike-button" title="Disliker cet argument" {% if id_arg in disliked_args %}disabled style="color: #dc3545;"{% endif %}>👎</button>
+                            </form>
+                            {% endif %}
+                        </div>
+                        <p class="meta">Créé par {{ pseudo }} le {{ date_creation | datetimeformat }}</p>
+                    </div>
+                    {% elif camps == 'V' %}
+                    <div class="comment-pour">
+                        <a href="{{ url_for('commentaire', arg_id=id_arg) }}" class="comment-text">{{ court }}</a>
+                        <div class="like-section">
+                            <span class="like-count">{{ likes }} </span>
+                            {% if is_logged_in %}
+                            <form action="{{ url_for('liker_argument', arg_id=id_arg) }}" method="POST" class="like-form">
+                                <button type="submit" class="like-button" title="Liker cet argument" {% if id_arg in liked_args %}disabled style="color: #dc3545;"{% endif %}>👍</button>
+                            </form>
+                            {% endif %}
+                            <span class="dislike-count">{{ dislikes }} </span>
+                            {% if is_logged_in %}
+                            <form action="{{ url_for('disliker_argument', arg_id=id_arg) }}" method="POST" class="dislike-form">
+                                <button type="submit" class="dislike-button" title="Disliker cet argument" {% if id_arg in disliked_args %}disabled style="color: #dc3545;"{% endif %}>👎</button>
+                            </form>
+                            {% endif %}
+                        </div>
+                        <p class="meta">Créé par {{ pseudo }} le {{ date_creation | datetimeformat }}</p>
+                    </div>
+                    {% elif camps == 'S' %}
+                    <div class="comment-contre">
+                        <a href="{{ url_for('commentaire', arg_id=id_arg) }}" class="comment-text">{{ court }}</a>
+                        <div class="like-section">
+                            <span class="like-count">{{ likes }}</span>
+                            {% if is_logged_in %}
+                            <form action="{{ url_for('liker_argument', arg_id=id_arg) }}" method="POST" class="like-form">
+                                <button type="submit" class="like-button" title="Liker cet argument" {% if id_arg in liked_args %}disabled style="color: #dc3545;"{% endif %}>👍</button>
+                            </form>
+                            {% endif %}
+                            <span class="dislike-count">{{ dislikes }}</span>
+                            {% if is_logged_in %}
+                            <form action="{{ url_for('disliker_argument', arg_id=id_arg) }}" method="POST" class="dislike-form">
+                                <button type="submit" class="dislike-button" title="Disliker cet argument" {% if id_arg in disliked_args %}disabled style="color: #dc3545;"{% endif %}>👎</button>
+                            </form>
+                            {% endif %}
+                        </div>
+                        <p class="meta">Créé par {{ pseudo }} le {{ date_creation | datetimeformat }}</p>
+                    </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            {% else %}
+            <p>Aucun argument pour cette position.</p>
+            {% endif %}
+        </section>
+
+        {% if not is_logged_in %}
+            <p class="mssg">Connectez-vous pour ajouter un argument ou interagir avec ce débat.</p>
+        {% endif %}
+
+        {% if is_logged_in %}
+        <section class="add-argument-section">
+            <a href="#argument-form" class="btn-toggle-form">＋ Ajouter un argument</a>
+            <div id="argument-form" class="add-argument">
+                <h2>Ajouter un argument</h2>
+                <a href="#" class="close-btn">×</a>
+                <form method="POST" action="{{ url_for('ajouter_argument') }}">
+                    <input type="hidden" name="debat_id" value="{{ debat_id }}">
+                    <input type="hidden" name="choix" value="{{ choix }}">
+                    <input type="text" name="court" placeholder="Résumé de votre argument" required>
+                    <textarea name="texte" placeholder="Votre argument détaillé" required></textarea>
+                    <button type="submit" class="btn-add">Ajouter</button>
+                </form>
+            </div>
+        </section>
+        {% endif %}
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p><a href="{{ url_for('contact') }}" class="contact">Contact</a></p>
+    </footer>
+
+    <!-- SCRIPT -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          setTimeout(function() {
+            const flashMessagesContainer = document.querySelector('.flash-messages');
+            if (flashMessagesContainer) {
+              flashMessagesContainer.remove();
+            }
+          }, 5000);
+        });
+    </script>
+      
+      
+
+    <script>
+        function startCountdown(seconds) {
+            let countdownElement = document.getElementById("countdown");
+            let timeLeft = seconds;
+            updateCountdown();
+            let countdownInterval = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    countdownElement.textContent = "Débat terminé!";
+                    setTimeout(() => {
+                        window.location.href = "{{ url_for('debat_closed', debat_id=debat_id) }}";
+                    }, 2000);
+                    return;
+                }
+                updateCountdown();
+                timeLeft--;
+            }, 1000);
+            function updateCountdown() {
+                if (timeLeft <= 0) {
+                    countdownElement.textContent = "Débat terminé!";
+                    return;
+                }
+                let days = Math.floor(timeLeft / 86400);
+                let hours = Math.floor((timeLeft % 86400) / 3600);
+                let minutes = Math.floor((timeLeft % 3600) / 60);
+                let seconds = timeLeft % 60;
+                if (days > 0) {
+                    countdownElement.textContent = `${days} jour(s) ${hours}h ${minutes}m ${seconds}s`;
+                } else {
+                    countdownElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
+                }
+            }
+        }
+        startCountdown({{ time_left | safe }});
+    </script>
+</body>
+</html>

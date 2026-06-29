@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="../static/contact.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='contact.css') }}">
+
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span class="v">V</span>
+            <span class="neutre">/</span>
+            <span class="s">S</span>
+        </div>
+        <nav>
+            <a href="{{ url_for('acc') }}" class="active" >Accueil</a>
+            {% if 'username' in session %}
+                <a href="{{ url_for('creerdebat') }}" >Créer un débat</a>
+                <a href="{{ url_for('logout') }}">Déconnexion</a>
+            {% else %}
+                <a href="{{ url_for('connexion') }}">Connexion</a>
+                <a href="{{ url_for('inscription') }}">Inscription</a>
+            {% endif %}
+        </nav>
+        {% if 'username' in session %}
+        <div class="profil-btn">
+            <a href="{{ url_for('profil') }}" class="profil-circle">{{ session['username'][0] | upper }}</a>
+        </div>
+        {% endif %}
+        
+    </header>
+
+    <main>
+        <div class="contact-box">
+            <h2>Contactez-nous</h2>
+            
+            <section class="faq">
+                <h3>Questions Fréquentes</h3>
+                <div class="question">
+                    <strong>Comment puis-je réinitialiser mon mot de passe ?</strong>
+                    <p>Pour réinitialiser votre mot de passe, cliquez sur le lien "Mot de passe oublié ?" sur la page de connexion.</p>
+                </div>
+                <div class="question">
+                    <strong>Quand mes informations personnelles sont-elles utilisées ?</strong>
+                    <p>Nous utilisons vos informations personnelles uniquement pour la gestion de votre compte et pour répondre à vos demandes.</p>
+                </div>
+                <div class="question">
+                    <strong>Comment puis-je me désinscrire ?</strong>
+                    <p>Pour vous désinscrire, veuillez nous contacter via ce formulaire, et nous nous occuperons de la suppression de votre compte.</p>
+                </div>
+            </section>
+
+            <section class="contact-form">
+                <h3>Envoyez-nous un message</h3>
+                <form>
+                    <label for="name">Nom</label>
+                    <input type="text" id="name" placeholder="Entrez votre nom">
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Entrez votre email">
+
+                    <label for="message">Message</label>
+                    <textarea id="message" placeholder="Votre message ici..." rows="5"></textarea>
+
+                    <button type="submit">Envoyer</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p><a href="{{ url_for('contact') }}" class="contact">Contact</a></p>
+    </footer>
+</body>
+</html>

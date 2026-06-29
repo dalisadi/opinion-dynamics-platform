@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>V/S</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='commentaire.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span class="v">V</span>
+            <span class="neutre">/</span>
+            <span class="s">S</span>
+        </div>
+        <nav>
+            <a href="{{ url_for('acc') }}" >Accueil</a>
+            {% if 'username' in session %}
+                <a href="{{ url_for('creerdebat') }}">Créer un débat</a>
+                <a href="{{ url_for('logout') }}">Déconnexion</a>
+            {% else %}
+                <a href="{{ url_for('connexion') }}">Connexion</a>
+                <a href="{{ url_for('inscription') }}">Inscription</a>
+            {% endif %}
+        </nav>
+        {% if 'username' in session %}
+        <div class="profil-btn">
+            <a href="{{ url_for('profil') }}" class="profil-circle">{{ session['username'][0] | upper }}</a>
+        </div>
+        {% endif %}
+    </header>
+
+    <main>
+        {% if arg_id %}
+            {% if camps == 'N' %}
+                <div class="comment-neutre">
+                    <a class="comment-text">{{ titre }}</a>
+                    <a class="comment-desc">{{ desc }}</a>
+                    <a class="comment-author ">Créé par {{ auteur }} le {{ date | datetimeformat }}</a>
+                </div>
+            {% elif camps == 'V' %}
+                <div class="comment-pour">
+                    <a class="comment-text">{{ titre }}</a>
+                    <a class="comment-desc">{{ desc }}</a>
+                    <a class="comment-author ">Créé par {{ auteur }} le {{ date | datetimeformat }}</a>
+                </div>
+            {% elif camps == 'S' %}
+                <div class="comment-contre">
+                    <a class="comment-text">{{ titre }}</a>
+                    <a class="comment-desc">{{ desc }}</a>
+                    <a class="comment-author ">Créé par {{ auteur }} le {{ date | datetimeformat }}</a>
+                </div>
+            {% endif %}
+        {% endif %}
+
+        <section class="comment-outro">
+            <p>Cet argument vous a-t-il fait changer d'avis ?</p>
+            <a href="{{ url_for('confirmer_changement', debat_id=debat_id, id_arg=arg_id) }}" style="text-decoration:none;" class="btn-yes">
+                <img src="../static/icons/hand-thumbs-up.svg" alt="yes" width="25" height="25">
+            </a>
+            <a href="{{ url_for('debat', debat_id=debat_id, choix=choix) }}" style="text-decoration:none;" class="btn-no">
+                <img src="../static/icons/hand-thumbs-down.svg" alt="no" width="25" height="25">
+            </a>
+        </section>
+
+    </main>
+
+    <footer>
+        <p><a href="{{ url_for('contact') }}" class="contact">Contact</a></p>
+    </footer>
+</body>
+</html>

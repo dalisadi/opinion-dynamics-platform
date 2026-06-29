@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil - {{ pseudo }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='profil.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span class="v">V</span>
+            <span class="neutre">/</span>
+            <span class="s">S</span>
+        </div>
+        <nav>
+            <a href="{{ url_for('acc') }}">Accueil</a>
+            <a href="{{ url_for('creerdebat') }}">Créer un débat</a>
+            <a href="{{ url_for('logout') }}">Déconnexion</a>
+        </nav>
+        <div class="profil-btn">
+            <a href="{{ url_for('profil') }}" class="profil-circle">{{ session['username'][0] | upper }}</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="profil-box">
+            <h2>Votre Profil</h2>
+            <div class="profil-info">
+                <p><strong>Pseudo :</strong> {{ pseudo }}</p>
+                <p><strong>Nom :</strong> {{ nom }}</p>
+                <p><strong>Prénom :</strong> {{ prenom }}</p>
+                <p><strong>Email :</strong> {{ mail }}</p>
+                <p><strong>Genre :</strong> {{ gender }}</p>
+                <p><strong>Date de naissance :</strong> {{ date_naissance }}</p>
+                <p><strong>Nationalité :</strong> {{ nationalite }}</p>
+            </div>
+            <a href="{{ url_for('modifier_profil') }}" class="btn-modifier">Modifier le profil</a>
+        </section>
+
+        <section class="debates-box">
+            <h2>Vos Débats Créés</h2>
+            {% if debates %}
+                {% for id_debat, titre, description, date_creation in debates %}
+                <div class="debat-item">
+                    <h3>{{ titre }}</h3>
+                    <p>{{ description }}</p>
+                    <p><em>Créé le {{ date_creation }}</em></p> <!-- Affichage brut -->
+                    <a href="{{ url_for('choixdebat', debat_id=id_debat) }}">Voir le débat</a>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>Vous n'avez encore créé aucun débat.</p>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        <p><a href="{{ url_for('contact') }}" class="contact">Contact</a></p>
+    </footer>
+</body>
+</html>

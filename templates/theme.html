@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ theme_name }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='themes.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <span class="v">V</span>
+            <span class="neutre">/</span>
+            <span class="s">S</span>
+        </div>
+        <nav>
+            <a href="{{ url_for('acc') }}">Accueil</a>
+            {% if 'username' in session %}
+                <a href="{{ url_for('creerdebat') }}">Créer un débat</a>
+                <a href="{{ url_for('logout') }}">Déconnexion</a>
+            {% else %}
+                <a href="{{ url_for('connexion') }}">Connexion</a>
+                <a href="{{ url_for('inscription') }}">Inscription</a>
+            {% endif %}
+        </nav>
+        {% if is_logged_in %}
+        <div class="profil-btn">
+            <a href="{{ url_for('profil') }}" class="profil-circle">{{ session['username'][0] | upper }}</a>
+        </div>
+        {% endif %}
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+            <p class="{{ category }}-message">{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+    {% endwith %}
+
+    <h1>{{ theme_name | capitalize }}</h1>
+
+
+
+
+    <main>
+        {% for id_debat, titre, description, datecreation in debates %}
+        <section class="debate">
+            <a class="button-debat" href="{{ url_for('choixdebat', debat_id=id_debat) }}">
+                <h2><strong>{{ titre }}</strong></h2>
+                <h4>{{ datecreation }}</h4>
+            </a>
+        </section>
+        {% endfor %}
+    </main>
+</body>
+<footer>
+    <p><a href="{{ url_for('contact') }}" class="contact">Contact</a></p>
+</footer>
+
+</html>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      setTimeout(function() {
+        const flashMessagesContainer = document.querySelector('.flash-messages');
+        if (flashMessagesContainer) {
+          flashMessagesContainer.remove();
+        }
+      }, 5000); // 5000 millisecondes = 5 secondes
+    });
+</script>
+  

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>V/S</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--Charge la bibliothèque Swiper.js pour gérer le carrousel d'images-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='accueil.css') }}">
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <span class="v">V</span>
+                <span class="neutre">/</span>
+                <span class="s">S</span>
+            </div>
+            <nav>
+                <a href="{{ url_for('acc') }}" class="active" >Accueil</a>
+                {% if 'username' in session %}
+                    <a href="{{ url_for('creerdebat') }}" >Créer un débat</a>
+                    <a href="{{ url_for('logout') }}">Déconnexion</a>
+                {% else %}
+                    <a href="{{ url_for('connexion') }}">Connexion</a>
+                    <a href="{{ url_for('inscription') }}">Inscription</a>
+                {% endif %}
+            </nav>
+            {% if 'username' in session %}
+            <div class="profil-btn">
+                <a href="{{ url_for('profil') }}" class="profil-circle">{{ session['username'][0] | upper }}</a>
+            </div>
+            {% endif %}
+            
+        </header>
+
+        <div class="background-image"></div>
+
+        <section class="hero">
+            <div class="overlay"></div>
+            <div class="hero-content">
+                <h1><strong>Dialogues Constructifs</strong></h1>
+            </div>
+        </section>
+
+        <p class="parag">L'objectif de cette plateforme est d'offrir un espace accessible et structuré pour débattre de manière constructive.</p>
+
+        <section class="carousel">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="slide-content">
+                            <button type="button" class="button-theme">
+                                <a href="{{ url_for('theme_page', theme_name='politique') }}" style="text-decoration:none;">
+                                    <img src="../static/images/politique.jpg" alt="Politique">
+                                    <h3><strong>Politique</strong></h3>
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-content">
+                            <button type="button" class="button-theme">
+                                <a href="{{ url_for('theme_page', theme_name='academique') }}" style="text-decoration:none;">
+                                    <img src="../static/images/academique.jpg" alt="Académique">
+                                    <h3><strong>Académique</strong></h3>
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-content">
+                            <button type="button" class="button-theme">
+                                <a href="{{ url_for('theme_page', theme_name='scientifique') }}" style="text-decoration:none;">
+                                    <img src="../static/images/scientifique.jpg" alt="scientifique">
+                                    <h3><strong>Scientifique</strong></h3>
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-content">
+                            <button type="button" class="button-theme">
+                                <a href="{{ url_for('theme_page', theme_name='societal') }}" style="text-decoration:none;">
+                                    <img src="../static/images/societal.jpg" alt="societal">
+                                    <h3><strong>Sociétal</strong></h3>
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-content">
+                            <button type="button" class="button-theme">
+                                <a href="{{ url_for('theme_page', theme_name='economique') }}" style="text-decoration:none;">
+                                    <img src="../static/images/economique.jpg" alt="Économique">
+                                    <h3><strong>Économique</strong></h3>
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-content">
+                            <button type="button" class="button-theme">
+                                <a href="{{ url_for('theme_page', theme_name='environnemental') }}" style="text-decoration:none;">
+                                    <img src="../static/images/environnemental.jpg" alt="environnemental">
+                                    <h3><strong>Environnemental</strong></h3>
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-content">
+                            <button type="button" class="button-theme">
+                                <a href="{{ url_for('theme_page', theme_name='mediatique') }}" style="text-decoration:none;">
+                                    <img src="../static/images/mediatique.jpg" alt="mediatique">
+                                    <h3><strong>Médiatique</strong></h3>
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-content">
+                            <button type="button" class="button-theme">
+                                <a href="{{ url_for('theme_page', theme_name='juridique') }}" style="text-decoration:none;">
+                                    <img src="../static/images/juridique.jpg" alt="juridique">
+                                    <h3><strong>Juridique</strong></h3>
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-content">
+                            <button type="button" class="button-theme">
+                                <a href="{{ url_for('theme_page', theme_name='culturel') }}" style="text-decoration:none;">
+                                    <img src="../static/images/culturel.jpg" alt="Culturel">
+                                    <h3><strong>Culturel</strong></h3>
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-content">
+                            <button type="button" class="button-theme">
+                                <a href="{{ url_for('theme_page', theme_name='technologique') }}" style="text-decoration:none;">
+                                    <img src="../static/images/technologique.jpg" alt="technologique">
+                                    <h3><strong>Technologique</strong></h3>
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+
+        <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+        <script>
+            var swiper = new Swiper(".mySwiper", {
+                slidesPerView: 5,  // Affiche 5 images en même temps
+                spaceBetween: 10,  // Espacement entre les images
+                loop: true,
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+            });
+        </script>
+        
+    <footer>
+            <p><a href="{{ url_for('contact') }}" class="contact">Contact</a></p>
+    </footer>
+    </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choix des Thèmes  de débats préférés</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <section id="choix-themes">
+        <h2>Quels thèmes préférez-vous ?</h2>
+        <p>Veuillez choisir 3 thèmes avant de continuer.</p>
+        <form action="accueil.html">  <!-- Redirige vers la page d'accueil après validation -->
+            <div class="themes-container">
+                <label class="theme">
+                    <input type="checkbox" name="theme" value="politique">
+                    <span>Politique</span>
+                </label>
+                <label class="theme">
+                    <input type="checkbox" name="theme" value="économie">
+                    <span>Économie</span>
+                </label>
+                <label class="theme">
+                    <input type="checkbox" name="theme" value="technologie">
+                    <span>Technologie</span>
+                </label>
+                <label class="theme">
+                    <input type="checkbox" name="theme" value="environnement">
+                    <span>Environnement</span>
+                </label>
+                <label class="theme">
+                    <input type="checkbox" name="theme" value="société">
+                    <span>Société</span>
+                </label>
+            </div>
+            <button type="submit">Valider et continuer</button>
+        </form>
+    </section>
+
+</body>
+</html>
+

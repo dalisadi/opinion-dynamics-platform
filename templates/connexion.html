@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='connexion.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span class="v">V</span>
+            <span class="neutre">/</span>
+            <span class="s">S</span>
+        </div>        
+        <nav>
+            <a href="{{ url_for('acc') }}">Accueil</a>
+            {% if 'username' in session %}
+                <a href="{{ url_for('creerdebat') }}">Créer un débat</a>
+                <a href="{{ url_for('logout') }}">Déconnexion</a>
+            {% else %}
+                <a href="{{ url_for('connexion') }}" class="active">Connexion</a>
+                <a href="{{ url_for('inscription') }}">Inscription</a>
+            {% endif %}
+        </nav>
+        {% if 'username' in session %}
+        <div class="profil-btn">
+            <a href="{{ url_for('profil') }}" class="profil-circle">{{ session['username'][0] | upper }}</a>
+        </div>
+        {% endif %}
+    </header>
+
+    <main>
+        <div class="login-box">
+            <h2 class="conn">Connexion</h2>
+            {% if error %}
+		        <p style="color : red;"> {{ error }} </p>
+	        {% endif %}
+            <form name="formulaire_connexion" method="post" action="/connexion">
+                <label for="username">Pseudo</label>
+                <input type="text" name="username" placeholder="Saisir votre pseudo">
+                
+                <label for="password">Mot de passe</label>
+                <input type="password" name="password" placeholder="Saisir votre mot de passe">
+                
+                <a href="#" class="forgot-password">Mot de passe oublié ?</a>  
+
+                <button type="submit">Connexion</button>
+
+                <a class="pas-inscrit" href="inscription.html">Pas encore inscrit ?</a>
+
+            </form>
+            
+        </div>
+    </main>
+
+    <footer>
+        <p><a href="{{ url_for('contact') }}" class="contact">Contact</a></p>
+    </footer>
+</body>
+</html>

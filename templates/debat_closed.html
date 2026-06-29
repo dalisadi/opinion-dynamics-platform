@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>FIN Débat - {{ debate[0] }}</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='stats.css') }}">
+        
+        <!-- pour les graphiques -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    </head>
+    <body>
+
+        <header>
+            <div class="logo">
+                <span class="v">V</span>
+                <span class="neutre">/</span>
+                <span class="s">S</span>
+            </div>
+            <nav>
+                <a href="{{ url_for('acc') }}">Accueil</a>
+                {% if is_logged_in %}
+                    <a href="{{ url_for('creerdebat') }}">Créer un débat</a>
+                    <a href="{{ url_for('logout') }}">Déconnexion</a>
+                {% else %}
+                    <a href="{{ url_for('connexion') }}">Connexion</a>
+                    <a href="{{ url_for('inscription') }}">Inscription</a>
+                {% endif %}
+            </nav>
+            {% if is_logged_in %}
+            <div class="profil-btn">
+                <a href="{{ url_for('profil') }}" class="profil-circle">{{ session['username'][0] | upper }}</a>
+            </div>
+            {% endif %}
+        </header>
+
+
+        <div class="debat_termine_container">
+            <div class="description">
+                <p class="titre">Débat terminé !</p>
+                <p class="nom_debat"> {{ debate[0] }}</p>
+                <p class="nom_debat"> {{ debate[1] }}</p>
+            <br>
+                <p> regardons ce qu'il s'est passé...</p>
+            </div>
+        </div>
+
+        <div class="au_debut">
+            <p> Au début de ce débat,</p>
+            <p>il y avait ...</p>
+            
+            <canvas id="pieChartDebut"></canvas>
+            
+            <p>puis à la fin,</p>
+            <p>il y avait ...</p>
+            <canvas id="pieChartFin"></canvas>
+        </div>
+
+        <p style="text-align: center;"> Comment expliquer cela ?</p>
+
+        <div class="nb_arg">
+            <p>Au total,</p>
+            <br><br>
+            <canvas id="barChartTotal"></canvas>
+            <br><br>
+            <p>il y a eu {{ nb_total }} arguments.</p>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <p style="text-align: center;">Voici les arguments qui ont marqués le débat</p>
+
+
+        <div class="top">
+            <p style="font-weight: bold;">TOP 3</p>
+            <p>des arguments les plus likés</p>
+        
+            {% for arg in top_3_args_like %}
+            <div class="top_">
+                <p class="titre_arg">{{ arg.court }}</p>
+                <p class="arg">{{ arg.texte }}</p>
+        
+                <div class="stars">
+                    {% for _ in range(4 - loop.index) %}
+                    <span class="star">&#9733;</span>
+                    {% endfor %}
+                </div>
+        
+                <div class="likes">
+                    <span class="heart">&#10084;</span>
+                    <p class="nb_like">{{ arg.like }}</p>
+                </div>
+        
+                <div class="nom_uti">
+                    <p class="uti">{{ arg.pseudo }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="top">
+            <p style="font-weight: bold;">TOP 3</p>
+            <p>des arguments les plus convaincants</p>
+        
+            {% for arg in top_3_convaincants %}
+            <div class="top_">
+                <p class="titre_arg">{{ arg.court }}</p>
+                <p class="arg">{{ arg.texte }}</p>
+        
+                <div class="stars">
+                    {% for _ in range(4 - loop.index) %}
+                    <span class="star">&#9733;</span>
+                    {% endfor %}
+                </div>
+        
+                <div class="likes">
+                    <span class="thumb">&#128077;</span>
+                    <p class="nb_like">{{ arg.change }}</p>
+                </div>
+        
+                <div class="nom_uti">
+                    <p class="uti">{{ arg.pseudo }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        
+
+        <div class="total">
+            <p> Au total, </p>
+            <p style="font-weight: bold;font-size:500%;"> {{ nb_change }} </p>
+            <p> personnes ont changé d'avis</p>
+            <div id="sankeyChart" style="width: 60%; height: 400px;margin-left:20%;margin-top:10%;"></div>
+        </div>
+
+
+        <div class="gagnant">
+            <p>Le camp gagnant est donc ...</p>
+            <!-- Affichage de l'image du podium -->
+            <img class="podium" src="{{ url_for('static', filename='images/img/' + podium_order + '.png') }}" alt="Podium" />
+
+            {% set camp_labels = {'V': 'le camp POUR', 'S': 'le camp CONTRE', 'N': 'le camp NEUTRE'} %}
+            <p>{{ camp_labels[podium_order[0]] }} 🎉</p>
+            <br>
+            <br>
+            <!-- Affichage des changements par camp -->
+            <ul>
+            <li>Pour (V) : {{ camp_scores['V'] }} changements</li>
+            <li>Contre (S) : {{ camp_scores['S'] }} changements</li>
+            <li>Neutre (N) : {{ camp_scores['N'] }} changements</li>
+            </ul>
+        </div>
+
+        {% if top_contributeur_data %}
+            <div class="convaincu">
+                <p>la star du débat est ...</p>
+                <img src="../static/images/img/non_genre_ordi.png" class="user_convaincu">
+                <div style="background-color: #C3C3C3;width: 30%;margin-left:35%;height: 8vh; border-radius: 10px;"> 
+                    <p style="padding-top:1vh;margin-top: -5vh;">{{ top_contributeur_data.pseudo }}</p> 
+                </div>
+                <br>
+                <p>qui a convaincu {{ top_contributeur_data.total_change }} personnes !</p>
+                <br><br><br><br>
+            </div>
+        {% endif %}
+
+
+        <footer>
+            <p><a href="{{ url_for('contact') }}" class="contact">Contact</a></p>
+        </footer>
+
+        
+
+        <!-- Script intégré -->
+        <script>
+            // Récupérer les données depuis Flask
+            const chartData = {{ chart_data | tojson | safe }};
+            
+            // Vérifier si les données sont bien reçues
+            console.log("Données reçues de Flask :", chartData);
+
+            // Charger Google Charts
+            google.charts.load('current', {packages: ['sankey']});
+            google.charts.setOnLoadCallback(drawSankey);
+
+            function drawSankey() {
+                const flows = {{ chart_data.flows | tojson | safe }};
+
+                const data = new google.visualization.DataTable();
+                data.addColumn('string', 'De');
+                data.addColumn('string', 'À');
+                data.addColumn('number', 'Nombre');
+
+                const campLabels = {
+                    'V': 'Pour',
+                    'S': 'Contre',
+                    'N': 'Neutre'
+                };
+
+                const colorMap = {
+                    'Pour (Début)': '#28a745',
+                    'Neutre (Début)': '#ac967b',
+                    'Contre (Début)': '#dc3545',
+                    'Pour (Fin)': '#28a745',
+                    'Neutre (Fin)': '#ac967b',
+                    'Contre (Fin)': '#dc3545'
+                };
+
+                // Construire les nœuds utilisés
+                const usedNodes = new Set();
+                const sankeyData = flows.map(flow => {
+                    const from = `${campLabels[flow.source]} (Début)`;
+                    const to = `${campLabels[flow.target]} (Fin)`;
+                    usedNodes.add(from);
+                    usedNodes.add(to);
+                    return [from, to, flow.value];
+                });
+
+                // Ajouter des flows fictifs uniquement pour les nœuds utilisés, pour forcer l’ordre
+                const orderLeft = ['Pour (Début)', 'Neutre (Début)', 'Contre (Début)'];
+                const orderRight = ['Pour (Fin)', 'Neutre (Fin)', 'Contre (Fin)'];
+
+                orderLeft.forEach(from => {
+                    orderRight.forEach(to => {
+                        if (usedNodes.has(from) && usedNodes.has(to)) {
+                            sankeyData.push([from, to, 0.001]);  // très faible poids invisible
+                        }
+                    });
+                });
+
+                data.addRows(sankeyData);
+
+                // Construire l'ordre des couleurs basé sur les nœuds effectivement utilisés
+                const allNodes = Array.from(usedNodes);
+                const colors = allNodes.map(label => colorMap[label] || '#999');
+
+                const options = {
+                    width: '100%',
+                    height: 400,
+                    sankey: {
+                        node: {
+                            label: { fontSize: 14, color: '#000' },
+                            colors: colors,
+                            colorMode: 'none'  // Utiliser nos couleurs fixées
+                        },
+                        link: {
+                            colorMode: 'gradient'
+                        }
+                    }
+                };
+
+                const chart = new google.visualization.Sankey(document.getElementById('sankeyChart'));
+                chart.draw(data, options);
+            }
+
+
+
+
+            //fonction pour le camembert
+            function createPieChart(chartId, labels, values, colors) {
+                const ctx = document.getElementById(chartId)?.getContext("2d");
+                if (!ctx) {
+                    console.error("Erreur : Canvas non trouvé pour l'ID :", chartId);
+                    return;
+                }
+        
+                new Chart(ctx, {
+                    type: "pie",
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: values,
+                            backgroundColor: colors,
+                        }],
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,  // Remettre true pour éviter le bug
+                        
+                        plugins: {
+                            legend: {
+                                position: 'left',  // Choisir la position de la légende : top, left, right, bottom
+                                labels: {
+                                    font: {
+                                        size: 30,  // Taille du texte de la légende
+                                    }
+                                }
+                            }
+                        }
+                    },
+                });
+            }
+
+            //fonction pour l'histogramme
+            function createBarChart(chartId, labels, values, colors) {
+                const ctx = document.getElementById(chartId)?.getContext("2d");
+                if (!ctx) {
+                    console.error("Erreur : Canvas non trouvé pour l'ID :", chartId);
+                    return;
+                }
+
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: "Nombre d'arguments",
+                            data: values,
+                            backgroundColor: colors,
+                            borderColor: colors,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    stepSize: 1
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+        
+            // Vérifier que les données sont valides avant de créer les graphiques
+            if (chartData && chartData.debut && chartData.debut.labels && chartData.debut.values) {
+                createPieChart("pieChartDebut", chartData.debut.labels, chartData.debut.values, ["#28a745", "#dc3545", "#ac967b"]);
+            }
+        
+            if (chartData && chartData.fin && chartData.fin.labels && chartData.fin.values) {
+                createPieChart("pieChartFin", chartData.fin.labels, chartData.fin.values, ["#28a745", "#dc3545", "#ac967b"]);
+            }
+
+            if (chartData && chartData.total && chartData.total.labels && chartData.total.values) {
+                createBarChart("barChartTotal", chartData.total.labels, chartData.total.values, ["#28a745", "#dc3545", "#ac967b"]);
+            }
+        </script>
+        
+    </body>
+</html>

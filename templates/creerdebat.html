@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Créer un Débat</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='creerdebat.css') }}">
+    </head>
+    <body>
+
+        <header>
+            <div class="logo">
+                <span class="v">V</span>
+                <span class="neutre">/</span>
+                <span class="s">S</span>
+            </div>
+            <nav>
+                <a href="{{ url_for('acc') }}" >Accueil</a>
+                {% if 'username' in session %}
+                    <a href="{{ url_for('creerdebat') }}" class="active">Créer un débat</a>
+                    <a href="{{ url_for('logout') }}">Déconnexion</a>
+                {% else %}
+                    <a href="{{ url_for('connexion') }}">Connexion</a>
+                    <a href="{{ url_for('inscription') }}">Inscription</a>
+                {% endif %}
+            </nav>
+            {% if is_logged_in %}
+            <div class="profil-btn">
+                <a href="{{ url_for('profil') }}" class="profil-circle">{{ session['username'][0] | upper }}</a>
+            </div>
+            {% endif %}
+        </header>
+
+        <section id="create-debate">
+            <h2>Créer un Nouveau Débat</h2>
+            <form method="POST" action="{{ url_for('creerdebat') }}">
+                <div>
+                    <label for="title"><h3>Titre du débat</h3></label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div>
+                    <label for="theme"><h4>Thème du débat</h4></label>
+                    <select id="theme" name="theme" required>
+                        <option value="culturel">Culturel</option>
+                        <option value="academique">Académique</option>
+                        <option value="economique">Economique</option>
+                        <option value="environnemental">Environnemental</option>
+                        <option value="juridique">Juridique</option>
+                        <option value="mediatique">Médiatique</option>
+                        <option value="politique">Politique</option>
+                        <option value="scientifique">Scientifique</option>
+                        <option value="societal">Sociétal</option>
+                        <option value="technologique">Technologique</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="date_fin"><h6>Date de fin</h6></label>
+                    <input type="date" name="date_fin" placeholder="JJ/MM/AAAA" required>
+                   
+                </div>
+                <div>
+                    <label for="heure_fin"><h7>Heure de fin</h7></label>
+                    <input type="time" id="heure_fin" name="heure_fin" placeholder="ex. 15:30" required>
+                </div>
+                <div>
+                    <label for="description"><h5>Description</h5></label>
+                    <textarea id="description" name="description" required></textarea>
+                </div>
+                <button type="submit">Créer le débat</button>
+            </form>
+        </section>
+        
+        <footer>
+            <p><a href="{{ url_for('contact') }}" class="contact">Contact</a></p>
+        </footer>
+    </body>
+</html>

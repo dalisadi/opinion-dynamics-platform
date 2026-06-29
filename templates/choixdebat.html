@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>V/S</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='choixdebat.css') }}">
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <span class="v">V</span>
+            <span class="neutre">/</span>
+            <span class="s">S</span>
+        </div> 
+        <nav>
+            <a href="{{ url_for('acc') }}">Accueil</a>
+            {% if is_logged_in %}
+                <a href="{{ url_for('creerdebat') }}">Créer un débat</a>
+                <a href="{{ url_for('logout') }}">Déconnexion</a>
+            {% else %}
+                <a href="{{ url_for('connexion') }}">Connexion</a>
+                <a href="{{ url_for('inscription') }}">Inscription</a>
+            {% endif %}
+        </nav>
+        {% if is_logged_in %}
+        <div class="profil-btn">
+            <a href="{{ url_for('profil') }}" class="profil-circle">{{ session['username'][0] | upper }}</a>
+        </div>
+        {% endif %}
+    </header>
+
+    <main>
+
+        {% if not is_logged_in %}
+            <p class="mssg">Connectez-vous pour choisir un camp et participer au débat.</p>
+        {% endif %}
+
+        <section class="debate-intro">
+            <h1>{{ debate[0] }}</h1>
+            <p>{{ debate[1] }}</p>
+
+            {% if is_logged_in %}
+            <div class="vs-container">
+                {% if ancien_choix == 'V' %}
+                    <button class="btn pour disabled" disabled data-tooltip="pour">V</button>
+                {% else %}
+                    <a href="{{ url_for('debat', debat_id=debat_id, choix='V') }}"><button class="btn pour" data-tooltip="pour">V</button></a>
+                {% endif %}
+                {% if ancien_choix == 'N' %}
+                    <button class="btn neutre disabled" disabled data-tooltip="neutre">/</button>
+                {% else %}
+                    <a href="{{ url_for('debat', debat_id=debat_id, choix='N') }}"><button class="btn neutre" data-tooltip="neutre">/</button></a>
+                {% endif %}
+                {% if ancien_choix == 'S' %}
+                    <button class="btn contre disabled" disabled data-tooltip="contre">S</button>
+                {% else %}
+                    <a href="{{ url_for('debat', debat_id=debat_id, choix='S') }}"><button class="btn contre" data-tooltip="contre">S</button></a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p><a href="{{ url_for('contact') }}" class="contact">Contact</a></p>
+    </footer>
+</body>
+</html>
