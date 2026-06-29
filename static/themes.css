@@ -1,0 +1,301 @@
+/* Importation de la police Google */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
+:root {
+  --primary-color: #1d3557;    
+  --secondary-color: #457b9d;  
+  --accent-color: #007bff;    
+  --background-color: white; 
+  --text-color: #1d1d1d;
+}
+/* Styles généraux */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+/*body*/
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5efe6;
+  color: var(--text-color);
+  height: 100vh;
+  display: flex;
+flex-direction: column;
+}
+
+/* HEADER */
+header {
+  width: 100%;
+  padding: 20px 40px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+header .logo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: black;
+}
+
+header .logo .neutre {
+  color: var(--accent-color);
+}
+
+.logo:hover .neutre {
+  color: #ac967b; /* Change la couleur de la barre au survol */
+}
+
+.logo:hover .s {
+  color: #dc3545; /* Change la couleur du "S" au survol */
+}
+
+.logo:hover .v{
+  color: #28a745;
+}
+
+
+header nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--primary-color);
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+header nav a:hover {
+  color: var(--accent-color);
+}
+
+header nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 3px;
+  background-color: var(--accent-color);
+  border-radius: 2px;
+}
+
+.flash-messages {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999; /* Pour etre sur le reste */
+  width: auto;
+  max-width: 80vw;
+  padding: 0; 
+  display: flex;
+}
+
+.flash-messages p {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: opacity 0.3s ease;
+}
+
+.success-message {
+  background-color: #28a745;
+}
+
+.error-message {
+  background-color: #dc3545; 
+}
+
+main {
+  max-width: 800px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column; /* Ajoutez cette ligne pour organiser les boîtes verticalement */
+  text-align: center;
+  width: 100%;
+  padding: 0 20px; 
+}
+
+.button-debat{
+  text-decoration: none;
+}
+
+.debate {
+  background: white;
+  padding: 20px;
+  margin: 20px auto;
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.debate:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.debate h4 {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 1em;
+  width: 100%;
+  color: #444444;
+  text-align: right;
+}
+
+.debate h2 {
+  font-size: 1.8em;
+  text-align: center;
+  margin: 10px auto 15px auto;
+  max-width: 85%;
+  word-break: break-word;
+  line-height: 1.3;
+  margin-top: 6%;
+  color: var(--text-color);
+  margin-bottom: 20px;
+}
+
+.debate p {
+  margin: 0 auto;
+  padding: 0 10px;
+  text-align: center;
+  max-width: 85%;
+  line-height: 1.6;
+  font-size: 0.9em;
+  color: #383838;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1{
+    margin-top: 50px;
+    margin-bottom: 50px  ;
+    text-align: center;
+    font-size: 400%;
+
+}
+
+/* FOOTER */
+footer {
+  padding: 20px 40px;
+  text-align: center;
+  background: #333;
+  margin-top: auto;
+}
+
+footer p {
+  font-size: 0.9rem;
+}
+
+footer .contact {
+  text-decoration: none;
+  color: var(--background-color);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+footer .contact:hover {
+  color: var(--accent-color);
+}
+
+
+
+.contact {
+  color: #b3b3b3;
+  font-size: 1em;
+  text-decoration: none;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+    margin: 30px 0;
+  }
+
+  header {
+    padding: 15px 20px;
+  }
+
+  header nav {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+
+/*PROFIL*/
+/* Style pour l’icône de profil */
+.profil-btn {
+  margin-left: 20px;
+}
+
+.profil-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: black;
+  color: var(--accent-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.profil-circle:hover {
+  background-color: var(--primary-color);
+}
+
+
+
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .debate {
+    margin: 10px 0;
+    border-radius: 15px;
+  }
+
+  .debate h2 {
+    font-size: 1.1em;
+  }
+
+  .debate p {
+    font-size: 0.9em;
+    padding: 0 5px;
+  }
+
+  header .logo {
+    font-size: 1.5rem;
+  }
+
+  header nav a {
+    font-size: 0.9em;
+    margin: 0 10px;
+  }
+}

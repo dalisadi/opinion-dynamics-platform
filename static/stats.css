@@ -1,0 +1,312 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
+/* Variables */
+:root {
+  --accent-color: #007bff;    
+  --background-color: #f5efe6; 
+  --text-color: #1d1d1d;
+  --primary-color: #1d3557;    
+  --secondary-color: #457b9d; 
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color:var(--text-color);
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/*HEADER*/
+
+header {
+    width: 100%;
+    padding: 20px 40px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+  
+header .logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: black;
+}
+  
+header .logo .neutre {
+    color: var(--accent-color);
+}
+  
+.logo:hover .neutre {
+    color: #ac967b;
+}
+  
+.logo:hover .s {
+    color: #dc3545;
+}
+  
+.logo:hover .v {
+    color: #28a745;
+}
+  
+header nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--primary-color);
+    position: relative;
+    transition: color 0.3s ease;
+}
+  
+header nav a:hover {
+    color: var(--accent-color);
+}
+  
+header nav a.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 3px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+}
+  
+.profil-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: black;
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+  
+.profil-circle:hover {
+    background-color: var(--primary-color);
+}
+
+
+.debat_termine_container{
+    background-color: white;
+    border-width: 2px;
+    border-radius: 10px;
+
+    /*taille du bloc*/
+    height: 55vh;
+    width: 55vw;
+
+    /* le texte sera au centre*/
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+
+    /*le bloc sera centré horizontalement de la page*/
+    left:50%;
+    transform: translateX(-50%);
+
+    /*on ajoute de la marge en haut*/
+    top:10vh;
+
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    
+}
+
+.titre{
+    font-size: clamp(50px, 3vw, 96px);/*la taille s'adapte à la taille de la fenetre*/
+}
+
+.nom_debat{
+    font-size: clamp(25px, 1vw, 48px);
+    /*line-height: 0.5;*/
+    font-weight: bold;
+}
+
+p{
+    font-size: clamp(30px, 2vw, 40px);
+}
+
+.gagnant{
+    position: relative;
+    text-align: center;
+    margin-top:38vh;
+}
+
+.podium{
+    max-width: 100%;
+    margin-left:5%;
+}
+
+.convaincu{
+    text-align: center;
+    margin-top: 38vh;
+}
+
+.user_convaincu{
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.au_debut{
+    position:relative;
+    margin-top:40vh;
+    text-align: center;
+    /*line-height: 0.5;*/
+}
+
+.nb_arg{
+    text-align: center;
+    margin-top:38vh;
+}
+
+.top{
+    text-align: center;
+    margin-top:20vh;
+}
+
+.top_ {
+    text-align: left;
+    background-color: white;
+    width: 40vw;
+    margin-left: 30%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 3%;
+    position: relative; /* Pour pouvoir positionner l'élément .likes de manière absolue */
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.titre_arg {
+    font-size: 200%;
+    margin-top: 3%;
+    padding-left: 3%;
+}
+
+.arg {
+    font-size: 120%;
+    padding-left: 3%;
+    padding-right: 20%;
+    line-height: 1;
+}
+
+/* Style pour le coeur et les likes */
+.likes {
+    position: absolute;   /* Pour positionner le bloc de manière absolue */
+    top: 5px;            /* Décale le cœur en haut */
+    right: 10px;          /* Décale le cœur vers la droite */
+    text-align: center;   /* Centre le cœur et le texte en dessous */
+}
+
+.heart {
+    font-size: 30px;      /* Taille du cœur */
+    color: red;           /* Couleur du cœur */
+    cursor: pointer;     /* Change le curseur pour montrer qu'il est cliquable */
+    
+}
+
+.nb_like {
+    font-size: 16px;      /* Taille du texte pour le nombre de likes */
+    margin-top :-10px;
+}
+
+/* Style pour les étoiles */
+.stars {
+    position: absolute;   /* Pour positionner les étoiles de manière absolue */
+    top: 10px;            /* Décale les étoiles en haut */
+    left: 10px;           /* Décale les étoiles vers la gauche */
+    text-align: left;     /* Aligne les étoiles à gauche */
+}
+
+.star {
+    font-size: 25px;      /* Taille des étoiles */
+    color: gold;          /* Couleur des étoiles */
+    margin-right: 5px;    /* Espace entre les étoiles */
+}
+
+.thumb {
+    font-size: 30px;      /* Taille du pouce */
+    color: blue;          /* Couleur du pouce */
+    cursor: pointer;     /* Change le curseur pour montrer qu'il est cliquable */
+}
+
+.total{
+    text-align: center;
+    margin-top:20%;
+}
+
+.nom_uti {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+}
+
+.uti{
+    
+    font-size: 120%;
+}
+
+/* FOOTER */
+footer {
+    padding: 20px 40px;
+    text-align: center;
+    background: #333;
+    margin-top: auto;
+    position: relative;
+    width: 100%;
+}
+
+footer p {
+    font-size: 0.9rem;
+    color: #b3b3b3;
+}
+
+footer .contact {
+    text-decoration: none;
+    color: var(--background-color);
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+footer .contact:hover {
+    color: var(--accent-color);
+}
+
+#pieChartDebut, #pieChartFin {
+    max-width: 40%;           /* Hauteur automatique selon le conteneur */
+    max-height: 40%;
+    margin-left: 27%;
+    margin-top:5%;
+}
+
+#barChartTotal {
+    width: 60% !important;
+    height: 60% !important;
+    margin: 0 auto;
+    display: block;
+}

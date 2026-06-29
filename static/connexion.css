@@ -1,0 +1,248 @@
+/* connexion.css */
+
+/* Importation de la police Google */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
+/* Déclaration de variables pour faciliter la gestion des couleurs */
+:root {
+  --primary-color: #1d3557;    /* Bleu foncé, sérieux et moderne */
+  --secondary-color: #457b9d;  /* Bleu moyen pour les survols et textes secondaires */
+  --accent-color: #007bff;     /* Rouge accentué, symbolisant l'énergie du débat */
+  --background-color: #e0e0e0; /* Fond clair pour un contraste élégant */
+  --text-color: #1d1d1d;
+}
+
+/* Réinitialisation de quelques styles de base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+header {
+  width: 100%;
+  padding: 20px 40px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+header .logo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: black;
+}
+
+header .logo .neutre {
+  color: var(--accent-color);
+}
+
+.logo:hover .neutre {
+  color: #ac967b; /* Change la couleur de la barre au survol */
+}
+
+.logo:hover .s {
+  color: #dc3545; /* Change la couleur du "S" au survol */
+}
+
+.logo:hover .v{
+  color: #28a745;
+}
+
+header nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--primary-color);
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+header nav a:hover {
+  color: var(--accent-color);
+}
+
+header nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 3px;
+  background-color: var(--accent-color);
+  border-radius: 2px;
+}
+
+/* MAIN */
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+/* BOÎTE DE CONNEXION */
+.login-box {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.login-box h2.conn {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+/* FORMULAIRE */
+.login-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-box form label {
+  text-align: left;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  color: var(--primary-color);
+}
+
+.login-box form input {
+  padding: 12px 15px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.login-box form input:focus {
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+/* LIEN MOT DE PASSE OUBLIÉ */
+.login-box form .forgot-password {
+  align-self: flex-end;
+  font-size: 0.85rem;
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.login-box form .forgot-password:hover {
+  color: var(--accent-color);
+}
+
+/* BOUTON DE CONNEXION */
+.login-box form button {
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--accent-color);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-box form button:hover {
+  background-color: #1d3557;
+}
+
+/* LIEN D'INSCRIPTION */
+.login-box form .pas-inscrit {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.login-box form .pas-inscrit:hover {
+  color: var(--accent-color);
+}
+
+/* FOOTER */
+footer {
+  padding: 20px 40px;
+  text-align: center;
+  background: #333;
+}
+
+footer p {
+  font-size: 0.9rem;
+}
+
+footer .contact {
+  text-decoration: none;
+  color: var(--background-color);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+footer .contact:hover {
+  color: var(--accent-color);
+}
+
+
+/*PROFIL*/
+/* Style pour l’icône de profil */
+.profil-btn {
+  margin-left: 20px;
+}
+
+.profil-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: black;
+  color: var(--accent-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.profil-circle:hover {
+  background-color: var(--primary-color);
+}
+
+
+/* RESPONSIVITÉ */
+@media screen and (max-width: 768px) {
+  header {
+    padding: 15px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-box {
+    padding: 30px 20px;
+  }
+}

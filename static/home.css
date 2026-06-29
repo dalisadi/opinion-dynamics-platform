@@ -1,0 +1,85 @@
+/* tout ça pour le logo de la page home */
+.container_center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+@font-face {
+  font-family: 'ROADRAGE';
+  src: url('road_rage/Road_Rage.otf') format('truetype'); 
+  
+}
+
+body{
+  background-color: #f5efe6;
+}
+
+.lettreP{
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    display: inline-block;
+
+
+
+    transition: 0.4s;
+    transform: translateY(0);
+    color: #2c0703;
+    font-family: ROADRAGE;
+    font-size:5em;
+}
+
+.lettreP:hover{
+    transform: translateY(-1rem);
+    color: #b0d08d;
+}
+
+.lettreN{
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    display: inline-block;
+
+
+
+    transition: 0.4s;
+    transform: translateY(0);
+    color: #2c0703;
+    font-family: ROADRAGE;
+    font-size:8em;
+}
+
+.lettreN:hover{
+    transform: translateY(-1rem);
+    color:#d7bba4;
+}
+
+.lettreC{
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    display: inline-block;
+
+
+    transition: 0.4s;
+    transform: translateY(0);
+
+    color: #2c0703;
+    font-family: ROADRAGE;
+    font-size:5em;
+}
+
+.lettreC:hover{
+    transform: translateY(-1rem);
+    color:#e8775a;
+}
+
+.anim{
+    display:flex;
+    align-items:center;
+    justify-content: center;
+  
+}
+/* fin de la page home */

@@ -1,0 +1,336 @@
+/* static/profil.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
+:root {
+    --primary-color: #1d3557;
+    --secondary-color: #457b9d;
+    --accent-color: #007bff;
+    --background-color: #f5efe6;
+    --text-color: #1d1d1d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    width: 100%;
+    padding: 20px 40px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header .logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: black;
+    flex-shrink: 0;
+}
+
+header .logo .neutre {
+    color: var(--accent-color);
+}
+
+.logo:hover .neutre { color: #ac967b; }
+.logo:hover .s { color: #dc3545; }
+.logo:hover .v { color: #28a745; }
+
+header nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+header nav a:hover { color: var(--accent-color); }
+
+
+/*PROFIL*/
+/* Style pour l’icône de profil */
+.profil-btn {
+    margin-left: 20px;
+}
+  
+.profil-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: black;
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+  
+.profil-circle:hover {
+    background-color: var(--primary-color);
+}
+
+
+main {
+    flex-direction: column;
+    padding: 40px 20px;
+    gap: 40px;
+}
+
+.profil-box {
+    background-color: #fff;
+    width: 100%;
+    max-width: 500px;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    border: 2px solid var(--accent-color);
+    transition: transform 0.3s ease;
+    margin: 0 auto;
+}
+
+.profil-box:hover {
+    transform: translateY(-5px);
+}
+
+.profil-box h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.profil-info p {
+    font-size: 1.1rem;
+    margin: 10px 0;
+    text-align: left;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+footer {
+    padding: 20px 40px;
+    text-align: center;
+    background: #333;
+}
+
+footer p { font-size: 0.9rem; }
+footer .contact {
+    text-decoration: none;
+    color: var(--background-color);
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+footer .contact:hover { color: var(--accent-color); }
+
+/* Modifier le profil */
+.btn-modifier {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 20px;
+    background-color: var(--accent-color);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.btn-modifier:hover {
+    background-color: var(--primary-color);
+}
+
+button.btn-modifier {
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    padding: 12px 25px;
+    width: auto;
+    min-width: 150px;
+}
+
+button.btn-modifier:hover {
+    background-color: var(--primary-color);
+}
+
+.debates-box {
+    background-color: #fff;
+    width: 100%;
+    max-width: 800px;
+    padding: 40px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+}
+
+.debat-item {
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+    padding: 25px;
+    margin: 15px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+
+.debat-item:last-child {
+    border-bottom: none;
+}
+
+.debat-item h3 {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+}
+
+.debat-item p {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.debat-item a {
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 20px;
+    background: var(--accent-color);
+    color: white ;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.debat-item a:hover {
+    background-color: var(--primary-color);
+    color: white ; 
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--accent-color);
+    outline: none;
+}
+
+@media (max-width: 768px) {
+
+    header {
+        padding: 15px 20px;
+    }
+
+    
+    main {
+        padding: 30px 15px;
+    }
+    
+    .profil-box, .debates-box {
+        width: 100%;
+        padding: 25px;
+        margin: 0;
+    }
+    
+    .profil-info p {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .profil-info p strong {
+        margin-bottom: 3px;
+    }
+    
+    .debat-item {
+        padding: 20px;
+        margin: 10px 0;
+    }
+    
+    .debat-item:hover {
+        transform: none;
+    }
+}
+
+@media (max-width: 480px) {
+    
+    .profil-box, .debates-box {
+        padding: 20px;
+        border-radius: 6px;
+    }
+    
+    .profil-info p {
+        font-size: 1rem;
+    }
+    
+    .btn-modifier {
+        width: 100%;
+        padding: 15px;
+    }
+    
+    .debat-item a {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Animation subtile */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.profil-box, .debates-box {
+    animation: fadeIn 0.6s ease;
+}

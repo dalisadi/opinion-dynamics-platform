@@ -1,0 +1,340 @@
+/* Importation de la police Google */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
+/* Déclaration de variables pour faciliter la gestion des couleurs */
+:root {
+  --primary-color: #1d3557;    /* Bleu foncé, sérieux et moderne */
+  --secondary-color: #457b9d;  /* Bleu moyen pour les survols et textes secondaires */
+  --accent-color: #007bff;     /* Couleur d'accent pour dynamiser le design */
+  --background-color: #e0e0e0; /* Fond clair pour un contraste élégant */
+  --text-color: #1d1d1d;
+}
+
+/* Réinitialisation de quelques styles de base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh; /* S'assurer que le body couvre toute la hauteur de la fenêtre */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Assure que le contenu commence en haut */
+}
+  
+
+/* HEADER */
+header {
+  width: 100%;
+  padding: 20px 40px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+header .logo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: black;
+  flex-shrink: 0;
+}
+
+header .logo .neutre {
+  color: var(--accent-color);
+}
+
+.logo:hover .neutre {
+  color: #ac967b; /* Change la couleur de la barre au survol */
+}
+
+.logo:hover .s {
+  color: #dc3545; /* Change la couleur du "S" au survol */
+}
+
+.logo:hover .v{
+  color: #28a745;
+}
+
+header nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--primary-color);
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+header nav a:hover {
+  color: var(--accent-color);
+}
+
+header nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 3px;
+  background-color: var(--accent-color);
+  border-radius: 2px;
+}
+
+/* MAIN */
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+/* Création du débat */
+#create-debate {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 600px;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 10px auto; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10%;
+  }
+  
+  
+  /* Titre du formulaire */
+  #create-debate h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+  }
+  
+  /* Formulaire */
+  #create-debate form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-grow: 1;
+  }
+  
+/* Label pour chaque champ du formulaire */
+
+#create-debate form label h3 {
+    display: block;
+    text-align: center;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+    text-indent: -49%;
+    font-size: 1rem; /* Ajuste la taille ici selon tes préférences */
+    font-weight: normal;
+}
+
+#create-debate form label h4 {
+    display: block;
+    text-align: center;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+    text-indent: -44%;
+    font-size: 1rem; /* Ajuste la taille ici selon tes préférences */
+    font-weight: normal;
+}
+
+#create-debate form label h6 {
+    display: block;
+    text-align: center;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+    text-indent: -52%;
+    font-size: 1rem; /* Ajuste la taille ici selon tes préférences */
+    font-weight: normal;
+}
+
+#create-debate form label h5 {
+    display: block;
+    text-align: center;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+    text-indent: -52%;
+    font-size: 1rem; /* Ajuste la taille ici selon tes préférences */
+    font-weight: normal;
+}
+
+#create-debate form label h7 {
+  display: block;
+  text-align: center;
+  margin-bottom: 5px;
+  color: var(--primary-color);
+  text-indent: -52%;
+  font-size: 1rem; /* Ajuste la taille ici selon tes préférences */
+  font-weight: normal;
+}
+
+
+/* Champs de saisie (input) sous les labels */
+#create-debate form input, 
+#create-debate form select {
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 70%; 
+    transition: border-color 0.3s ease;
+    margin: 0 auto;
+}
+
+/* Champs de description (textarea) */
+#create-debate form textarea {
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    text-align: center;
+    width: 70%; 
+    min-height: 150px;  /* Hauteur plus grande pour le champ description */
+    max-width: 100%;  /* Prend toute la largeur possible */
+    box-sizing: border-box; /* Assure que le padding est pris en compte dans la largeur totale */
+    transition: border-color 0.3s ease;
+    margin: 0 auto;
+}
+
+/* Lorsque l'input ou textarea est sélectionné */
+#create-debate form input:focus,
+#create-debate form textarea:focus {
+    border-color: var(--accent-color);
+    outline: none;
+}
+
+/* Inputs et Selects */
+#create-debate form input,
+#create-debate form select { /* Ici, 3% de padding vertical et 4% horizontal, à ajuster selon le résultat souhaité */
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 70%; 
+    transition: border-color 0.3s ease;
+}
+
+/* Champs de saisie (input) sous les labels */
+#create-debate form input {
+  padding: 12px 15px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 70%; 
+  transition: border-color 0.3s ease;
+  font-family: monospace; /* Pour une saisie claire des dates/heures */
+}
+
+
+/* Lorsque l'input est sélectionné */
+#create-debate form input:focus {
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+/* Lorsque l'input ou le select est sélectionné */
+#create-debate form input:focus,
+#create-debate form select:focus {
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+  
+  #create-debate form button {
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--accent-color);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 800;
+    width: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: center;
+    margin-top: 5%;
+  }
+  
+  #create-debate form button:hover {
+    background-color: #1d3557;
+  }
+  
+  /* FOOTER */
+footer {
+    padding: 20px 40px;
+    width: 100%;
+    margin-top: 6%;
+    text-align: center;
+    background: #333;
+  }
+  
+  footer p {
+    font-size: 0.9rem;
+  }
+  
+  footer .contact {
+    text-decoration: none;
+    color: var(--background-color);
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  
+  footer .contact:hover {
+    color: var(--accent-color);
+  }
+
+
+/*PROFIL*/
+/* Style pour l’icône de profil */
+.profil-btn {
+  margin-left: 20px;
+}
+
+.profil-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: black;
+  color: var(--accent-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.profil-circle:hover {
+  background-color: var(--primary-color);
+}
+
+  
+  /* Responsivité */
+  @media (max-width: 480px) {
+    #create-debate {
+      padding: 30px 20px;
+      width: 90%;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    header {
+      padding: 15px 20px;
+    }
+  }

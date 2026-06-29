@@ -1,0 +1,303 @@
+/* Importation de la police Google */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
+/* Déclaration de variables */
+:root {
+  --primary-color: #1d3557;
+  --secondary-color: #457b9d;
+  --accent-color: #007bff;
+  --background-color: #e0e0e0;
+  --text-color: #1d1d1d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+header {
+  width: 100%;
+  padding: 20px 40px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+header .logo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: black;
+}
+
+header .logo .neutre {
+  color: var(--accent-color);
+}
+
+.logo:hover .neutre {
+  color: #ac967b; /* Change la couleur de la barre au survol */
+}
+
+.logo:hover .s {
+  color: #dc3545; /* Change la couleur du "S" au survol */
+}
+
+.logo:hover .v{
+  color: #28a745;
+}
+
+header nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--primary-color);
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+header nav a:hover {
+  color: var(--accent-color);
+}
+
+header nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 3px;
+  background-color: var(--accent-color);
+  border-radius: 2px;
+}
+
+/* MAIN */
+main {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+/* Contact Box */
+.contact-box {
+  width: 100%;
+  max-width: 800px;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* FAQ Section */
+.faq {
+  margin-bottom: 40px;
+}
+
+.faq h3 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+
+.question {
+  margin-bottom: 15px;
+}
+
+.question strong {
+  font-weight: bold;
+}
+
+.question p {
+  margin-top: 5px;
+  font-size: 1rem;
+  color: var(--secondary-color);
+}
+
+/* Contact Form */
+.contact-form h3 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form form label {
+  font-size: 1rem;
+  color: var(--primary-color);
+}
+
+.contact-form form input,
+.contact-form form textarea {
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.contact-form form input:focus,
+.contact-form form textarea:focus {
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+.contact-form form button {
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--accent-color);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact-form form button:hover {
+  background-color: #1d3557;
+}
+
+/* FOOTER */
+footer {
+  padding: 20px 40px;
+  text-align: center;
+  background: #333;
+}
+
+footer p {
+  font-size: 0.9rem;
+}
+
+footer .contact {
+  text-decoration: none;
+  color: var(--background-color);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+footer .contact:hover {
+  color: var(--accent-color);
+}
+
+/*PROFIL*/
+/* Style pour l’icône de profil */
+.profil-btn {
+  margin-left: 20px;
+}
+
+.profil-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: black;
+  color: var(--accent-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.profil-circle:hover {
+  background-color: var(--primary-color);
+}
+
+
+/* Responsive design */
+@media screen and (max-width: 1200px) {
+  .swiper-slide {
+      padding: 8px;
+  }
+  
+  .slide-content {
+      min-height: 270px;
+  }
+  
+  .slide-content img {
+      height: 160px;
+
+  }
+
+  header {
+    padding: 15px 20px;
+  }
+  .inscription-form {
+    padding: 30px 20px;
+  }
+  .inscription-form .form-group-inline {
+    flex-direction: column;
+  }
+    
+}
+
+@media screen and (max-width: 768px) {
+
+  header {
+    padding: 15px 20px;
+  }
+  
+  .parag {
+      font-size: 1.3rem;
+      width: 85%;
+  }
+  
+  .swiper-slide {
+      padding: 5px;
+  }
+  
+  .slide-content {
+      min-height: 250px;
+      padding: 10px;
+  }
+  
+  .slide-content img {
+      height: 140px;
+  }
+  
+  .slide-content h3 {
+      font-size: 1rem;
+  }
+}
+
+
+@media screen and (max-width: 480px) {
+  .parag {
+      font-size: 1.1rem;
+      margin-bottom: 50px;
+  }
+  
+  .slide-content {
+      min-height: 200px;
+  }
+  
+  .slide-content img {
+      height: 100px;
+  }
+  
+  .swiper-button-next, 
+  .swiper-button-prev {
+      width: 30px;
+      height: 30px;
+  }
+}
